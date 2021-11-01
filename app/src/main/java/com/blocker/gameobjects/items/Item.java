@@ -1,5 +1,6 @@
 package com.blocker.gameobjects.items;
 
+import android.content.res.Resources;
 import android.graphics.Color;
 
 import com.blocker.gameobjects.MyObject;
@@ -9,8 +10,8 @@ public abstract class Item extends MyObject {
 
     private boolean pickable;
 
-    public Item(Color minimapColor, boolean isTransparent, boolean pickable) {
-        super(minimapColor, isTransparent);
+    public Item(Color minimapColor, boolean isTransparent, boolean pickable, Resources resources) {
+        super(minimapColor, isTransparent, resources);
         this.pickable = pickable;
     }
 

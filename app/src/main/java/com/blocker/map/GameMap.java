@@ -1,21 +1,17 @@
 package com.blocker.map;
 
+import android.graphics.Canvas;
 import android.graphics.Point;
 
 import com.blocker.gameobjects.MyObject;
 
-public class GameMap {
-    private final int width = 3000; //x
-    private final int height = 3000;//y
-    MyObject[][] map = new MyObject[width][height];
+import java.util.ArrayList;
 
-    /**
-     * Function adds Object of type MyObject to the map array.
-     * @param Type of object to be added to map array.
-     * @param point in map array for the object to be added to.
-     */
+public class GameMap {
+    ArrayList<MyObject> map = new ArrayList<>();
+
     public void addToMap(MyObject object, Point point) {
-        map[point.x][point.y] = object;
+
     }
 
     public void removeFromMap(Point point) { //TODO
@@ -27,7 +23,15 @@ public class GameMap {
      * @param point from which map array object should be accessed
      * @return MyObject from the map array
      */
-    public MyObject getObjectFromMap(Point point) {
-        return map[point.x][point.y];
+    public MyObject getObjectFromMap(Point point) { //TODO
+        return null;
+    }
+
+    public void update() {
+
+    }
+
+    public void onDraw(Canvas canvas) {
+
     }
 }
