@@ -15,11 +15,11 @@ import com.blocker.world.Direction;
 public class AccessBlock extends RotatingBlock {
 
     public AccessBlock(Resources resources, Direction facing) {
-        super(Color.valueOf(255,100,100), resources, facing, new Bitmap[]{
-                BitmapFactory.decodeResource(resources, R.drawable.accessblock_north_1),
-                BitmapFactory.decodeResource(resources, R.drawable.accessblock_east_1),
-                BitmapFactory.decodeResource(resources, R.drawable.accessblock_south_1),
-                BitmapFactory.decodeResource(resources, R.drawable.accessblock_west_1)});
+        super(Color.valueOf(255,100,100), resources, facing, new int[]{
+                 R.drawable.accessblock_north_1,
+                 R.drawable.accessblock_east_1,
+                R.drawable.accessblock_south_1,
+                R.drawable.accessblock_west_1});
     }
 
 
@@ -29,7 +29,7 @@ public class AccessBlock extends RotatingBlock {
     }
 
     @Override
-    public boolean isAccesible() { //TODO
+    public boolean isAccessible() { //TODO
         return false;
     }
 }

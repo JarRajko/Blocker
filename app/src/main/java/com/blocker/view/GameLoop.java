@@ -2,6 +2,7 @@ package com.blocker.view;
 
 import android.graphics.Canvas;
 import android.os.Build;
+import android.util.Log;
 import android.view.SurfaceHolder;
 
 import androidx.annotation.RequiresApi;
@@ -26,6 +27,7 @@ public class GameLoop implements Runnable  {
 
     @Override
     public void run() {
+
         long startTime = System.nanoTime();
         long updateStartTime = System.nanoTime();
         float lag = 0.0f;

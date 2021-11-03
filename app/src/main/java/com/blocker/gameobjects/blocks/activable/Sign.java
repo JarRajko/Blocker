@@ -1,4 +1,4 @@
-package com.blocker.gameobjects.blocks.activable;
+/*package com.blocker.gameobjects.blocks.activable;
 
 import android.content.res.Resources;
 import android.graphics.BitmapFactory;
@@ -37,7 +37,8 @@ public class Sign extends Block implements IActivable {
     }
 
     @Override
-    public boolean isAccesible() {
+    public boolean isAccessible() {
         return false;
     }
 }
+*/

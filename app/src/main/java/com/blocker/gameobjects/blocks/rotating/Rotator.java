@@ -1,4 +1,4 @@
-package com.blocker.gameobjects.blocks.rotating;
+/*package com.blocker.gameobjects.blocks.rotating;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -12,9 +12,6 @@ import com.blocker.R;
 import com.blocker.gameobjects.blocks.rotating.RotatingBlock;
 import com.blocker.world.Direction;
 
-/**
- * Rotator rotates after player moves trough this block
- */
 public class Rotator extends RotatingBlock {
 
 
@@ -32,7 +29,8 @@ public class Rotator extends RotatingBlock {
     }
 
     @Override
-    public boolean isAccesible() { //TODO
+    public boolean isAccessible() { //TODO
         return false;
     }
 }
+*/

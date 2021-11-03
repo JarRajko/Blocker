@@ -12,8 +12,7 @@ import com.blocker.R;
 public class Box extends Block {
     @RequiresApi(api = Build.VERSION_CODES.O)
     public Box(Resources resources) {
-        super(Color.valueOf(205,160,100), false, resources );
-        super.setTexture(BitmapFactory.decodeResource(resources, R.drawable.box_1));
+        super(Color.valueOf(205,160,100), false, R.drawable.box_1 );
     }
 
     @Override
@@ -22,7 +21,7 @@ public class Box extends Block {
     }
 
     @Override
-    public boolean isAccesible() { //TODO
+    public boolean isAccessible() { //TODO
         return false;
     }
 }

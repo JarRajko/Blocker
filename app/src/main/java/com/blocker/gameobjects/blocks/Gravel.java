@@ -1,4 +1,4 @@
-package com.blocker.gameobjects.blocks;
+/*package com.blocker.gameobjects.blocks;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -30,7 +30,8 @@ public class Gravel extends Block {
     }
 
     @Override
-    public boolean isAccesible() { //TODO
+    public boolean isAccessible() { //TODO
         return false;
     }
 }
+*/

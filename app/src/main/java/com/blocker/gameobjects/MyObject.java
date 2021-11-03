@@ -2,7 +2,6 @@ package com.blocker.gameobjects;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 
 import com.blocker.R;
@@ -10,12 +9,12 @@ import com.blocker.R;
 public abstract class MyObject {
     private Color minimapColor;
     private boolean transparent;
-    protected Bitmap texture;
+    protected int texture_id;
 
-    public MyObject(Color minimapColor, boolean transparent, Resources resources) {
+    public MyObject(Color minimapColor, boolean transparent, int texture_id) {
         this.minimapColor = minimapColor;
         this.transparent = transparent;
-        this.texture = BitmapFactory.decodeResource(resources, R.drawable.missing_texture);
+        this.texture_id = R.drawable.missing_texture;
     }
 
     public Color getMinimapColor() {
@@ -26,12 +25,12 @@ public abstract class MyObject {
         return transparent;
     }
 
-    public Bitmap getTexture() {
-        return texture;
+    public int getTexture_id() {
+        return texture_id;
     }
 
-    public void setTexture(Bitmap texture) {
-        this.texture = texture;
+    public void setTexture_id(int texture_id) {
+        this.texture_id = texture_id;
     }
 
     /**

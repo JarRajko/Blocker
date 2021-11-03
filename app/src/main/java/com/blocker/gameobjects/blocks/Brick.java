@@ -1,4 +1,4 @@
-package com.blocker.gameobjects.blocks;
+/*package com.blocker.gameobjects.blocks;
 
 import android.content.res.Resources;
 import android.graphics.BitmapFactory;
@@ -22,7 +22,8 @@ public class Brick extends Block {
     }
 
     @Override
-    public boolean isAccesible() { //TODO
+    public boolean isAccessible() { //TODO
         return false;
     }
 }
+*/

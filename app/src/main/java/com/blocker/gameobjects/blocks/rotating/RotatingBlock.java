@@ -4,18 +4,19 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 
+import com.blocker.R;
 import com.blocker.gameobjects.blocks.Block;
 import com.blocker.world.Direction;
 
 public abstract class RotatingBlock extends Block {
-    private Bitmap northFacing;
-    private Bitmap eastFacing;
-    private Bitmap southFacing;
-    private Bitmap westFacing;
+    private int northFacing;
+    private int eastFacing;
+    private int southFacing;
+    private int westFacing;
     private Direction facing;
 
-    public RotatingBlock(Color minimapColor, Resources resources, Direction facing, Bitmap[] textures) {
-        super(minimapColor, false, resources);
+    public RotatingBlock(Color minimapColor, Resources resources, Direction facing, int[] textures) {
+        super(minimapColor, false, R.drawable.missing_texture);
         northFacing = textures[0];
         eastFacing = textures[1];
         southFacing = textures[2];
@@ -27,16 +28,16 @@ public abstract class RotatingBlock extends Block {
     private void updateTexture() {
         switch (facing) {
             case NORTH:
-                super.setTexture(northFacing);
+                super.setTexture_id(northFacing);
                 break;
             case EAST:
-                super.setTexture(eastFacing);
+                super.setTexture_id(eastFacing);
                 break;
             case SOUTH:
-                super.setTexture(southFacing);
+                super.setTexture_id(southFacing);
                 break;
             case WEST:
-                super.setTexture(westFacing);
+                super.setTexture_id(westFacing);
                 break;
         }
     }

@@ -1,4 +1,4 @@
-package com.blocker.gameobjects.items;
+/*package com.blocker.gameobjects.items;
 
 import android.content.res.Resources;
 import android.graphics.Color;
@@ -9,3 +9,4 @@ public class Shoes extends Item {
         super(Color.valueOf(240,50,25), true, true, resources);
     }
 }
+*/

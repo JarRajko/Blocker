@@ -6,6 +6,7 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
+import com.blocker.R;
 import com.blocker.gameobjects.blocks.Block;
 import com.blocker.player.Player;
 
@@ -14,11 +15,11 @@ public class Gate extends Block implements IActivable { //TODO
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public Gate(Resources resources) {
-        super(Color.valueOf(150,150,150), true, resources);
+        super(Color.valueOf(150,150,150), true, R.drawable.gate_closed_1);
     }
 
     public void unlock() { //TODO
-        locked = true;
+        locked = false;
     }
 
     @Override
@@ -32,7 +33,7 @@ public class Gate extends Block implements IActivable { //TODO
     }
 
     @Override
-    public boolean isAccesible() { //TODO
+    public boolean isAccessible() { //TODO
         return false;
     }
 }

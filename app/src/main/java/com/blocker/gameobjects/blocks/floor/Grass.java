@@ -15,14 +15,21 @@ import java.util.Random;
 
 public class Grass extends Floor {
 
+    private int[] textures = {R.drawable.grass_1,
+            R.drawable.grass_2,
+            R.drawable.grass_3,
+            R.drawable.grass_4};
+
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public Grass(Resources resources) {
-        super(Color.valueOf(135,220,50), resources);
-        Bitmap[] bitmap = {BitmapFactory.decodeResource(resources, R.drawable.grass_1),
-                BitmapFactory.decodeResource(resources, R.drawable.grass_2),
-                BitmapFactory.decodeResource(resources, R.drawable.grass_3),
-                BitmapFactory.decodeResource(resources, R.drawable.grass_4)};
-        super.setTexture(bitmap);
+    public Grass() {
+        super(Color.valueOf(135,220,50), R.drawable.missing_texture);
+        Random rand = new Random();
+        super.setTexture_id(textures[rand.nextInt(textures.length)]);
+    }
+
+    public Grass(int grassType) {
+        super(Color.valueOf(135,220,50), R.drawable.missing_texture);
+        super.setTexture_id(textures[grassType]);
     }
 
 

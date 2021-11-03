@@ -1,4 +1,4 @@
-package com.blocker.gameobjects.blocks.rotating;
+/*package com.blocker.gameobjects.blocks.rotating;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -6,12 +6,12 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 
 import com.blocker.R;
+import com.blocker.gameobjects.blocks.activable.IActivable;
 import com.blocker.gameobjects.blocks.rotating.RotatingBlock;
+import com.blocker.player.Player;
 import com.blocker.world.Direction;
 
-/**
- * All turnikets blocks rotates after player makes *agility* moves on this type of block
- */
+
 public class Turniket extends RotatingBlock {
 
 
@@ -29,9 +29,9 @@ public class Turniket extends RotatingBlock {
     }
 
     @Override
-    public boolean isAccesible() { //TODO
+    public boolean isAccessible() { //TODO
         return false;
     }
 
-
 }
+*/

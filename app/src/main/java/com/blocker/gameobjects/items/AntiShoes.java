@@ -1,4 +1,4 @@
-package com.blocker.gameobjects.items;
+/*package com.blocker.gameobjects.items;
 
 import android.content.res.Resources;
 import android.graphics.Color;
@@ -8,3 +8,4 @@ public class AntiShoes extends Item {
         super(Color.valueOf(15,205,225), true, true, resources);
     }
 }
+*/

@@ -1,4 +1,4 @@
-package com.blocker.gameobjects.items;
+/*package com.blocker.gameobjects.items;
 
 import android.content.res.Resources;
 import android.graphics.Color;
@@ -8,3 +8,4 @@ public class AntiChickenLeg extends Item {
         super(Color.valueOf(30,130,240), true, true, resources);
     }
 }
+*/

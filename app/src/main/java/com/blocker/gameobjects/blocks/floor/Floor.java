@@ -12,10 +12,9 @@ import java.util.Random;
 
 public abstract class Floor extends Block { //TODO unabstract
 
-    public Floor(Color minimapColor, Resources resources) {
-        super(minimapColor, false, resources);
+    public Floor(Color minimapColor, int texture_id) {
+        super(minimapColor, false, texture_id);
     }
-
 
     @Override
     public boolean isPushable() {
@@ -23,7 +22,7 @@ public abstract class Floor extends Block { //TODO unabstract
     }
 
     @Override
-    public boolean isAccesible() {
+    public boolean isAccessible() {
         return true;
     }
 

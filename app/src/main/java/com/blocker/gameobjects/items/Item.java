@@ -10,8 +10,8 @@ public abstract class Item extends MyObject {
 
     private boolean pickable;
 
-    public Item(Color minimapColor, boolean isTransparent, boolean pickable, Resources resources) {
-        super(minimapColor, isTransparent, resources);
+    public Item(Color minimapColor, boolean isTransparent, boolean pickable, int texture_id) {
+        super(minimapColor, isTransparent, texture_id);
         this.pickable = pickable;
     }
 

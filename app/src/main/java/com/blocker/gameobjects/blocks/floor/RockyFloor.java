@@ -1,4 +1,4 @@
-package com.blocker.gameobjects.blocks.floor;
+/*package com.blocker.gameobjects.blocks.floor;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -18,3 +18,4 @@ public class RockyFloor extends Floor {
         super.setTexture(bitmap);
     }
 }
+*/

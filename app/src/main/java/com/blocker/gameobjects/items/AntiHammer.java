@@ -1,4 +1,4 @@
-package com.blocker.gameobjects.items;
+/*package com.blocker.gameobjects.items;
 
 import android.content.res.Resources;
 import android.graphics.Color;
@@ -8,3 +8,4 @@ public class AntiHammer extends Item {
         super(Color.valueOf(80,155,235), true, true, resources);
     }
 }
+*/
