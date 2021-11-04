@@ -40,7 +40,7 @@ public class GameLoop implements Runnable  {
                 updateStartTime = time;
                 lag += (float) updateTime;
                 while (lag >= (float) msPerUpdate) {
-                    game.update();
+                    //game.update();
                     counter++;
                     lag -= (float) msPerUpdate;
                 }

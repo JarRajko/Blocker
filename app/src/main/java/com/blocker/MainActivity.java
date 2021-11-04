@@ -10,6 +10,7 @@ import com.blocker.view.Game;
 
 public class MainActivity extends AppCompatActivity {
 
+    private Game game;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +21,20 @@ public class MainActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         //Set content view to game, so that objects in the Game class can be rendered to the screen
-        setContentView(new Game(this));
+        game = new Game(this);
+        setContentView(game);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        game.pause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        game.resume();
     }
 
 }

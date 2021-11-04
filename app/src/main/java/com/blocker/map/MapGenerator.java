@@ -24,15 +24,14 @@ public class MapGenerator { //NOTE game could have more maps
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public GameMap getTestMap() {
-        GameMap defaultTestMap = new GameMap(500,500); //24 on 13 is what can fit test device, last row and line are cropped
-        Log.e("Debug log: " , "method start");
-        for (int x = -250; x < 251; x++) {
-            //Log.e("Debug log: " , "x = " + x);
-            for (int y = -250; y < 251; y++) {
+        GameMap defaultTestMap = new GameMap(10,10); //24 on 13 is what can fit test device, last row and line are cropped
+
+        for (int x = 0; x < 10; x++) {
+
+            for (int y = 0; y < 10; y++) {
                     defaultTestMap.addToMap(new Grass(),new Point(x,y));
             }
         }
-        Log.e("Debug log: " , "Returning game map instance " + defaultTestMap);
         return defaultTestMap;
     }
 }
