@@ -24,11 +24,11 @@ public class MapGenerator { //NOTE game could have more maps
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public GameMap getTestMap() {
-        GameMap defaultTestMap = new GameMap(10,10); //24 on 13 is what can fit test device, last row and line are cropped
+        GameMap defaultTestMap = new GameMap(100,100); //24 on 13 is what can fit test device, last row and line are cropped
 
-        for (int x = 0; x < 10; x++) {
+        for (int x = 0; x < defaultTestMap.getSize().x; x++) {
 
-            for (int y = 0; y < 10; y++) {
+            for (int y = 0; y < defaultTestMap.getSize().y; y++) {
                     defaultTestMap.addToMap(new Grass(),new Point(x,y));
             }
         }

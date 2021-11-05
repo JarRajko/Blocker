@@ -14,7 +14,7 @@ public class Gate extends Block implements IActivable { //TODO
     private boolean locked = true;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public Gate(Resources resources) {
+    public Gate() {
         super(Color.valueOf(150,150,150), true, R.drawable.gate_closed_1);
     }
 
@@ -36,4 +36,5 @@ public class Gate extends Block implements IActivable { //TODO
     public boolean isAccessible() { //TODO
         return false;
     }
+
 }

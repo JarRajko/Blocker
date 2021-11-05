@@ -3,10 +3,14 @@ package com.blocker;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.WindowManager;
 
+import com.blocker.gameobjects.MyObject;
 import com.blocker.view.Game;
+
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
 

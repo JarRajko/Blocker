@@ -13,10 +13,16 @@ import android.view.SurfaceView;
 
 import androidx.annotation.RequiresApi;
 
+import com.blocker.R;
+import com.blocker.gameobjects.MyObject;
 import com.blocker.gameobjects.blocks.Block;
+import com.blocker.gameobjects.blocks.activable.Gate;
+import com.blocker.gameobjects.blocks.floor.Grass;
 import com.blocker.map.GameMap;
 import com.blocker.map.MapGenerator;
 import com.blocker.player.Player;
+
+import java.util.HashMap;
 
 public class Game extends SurfaceView implements Runnable {
 
@@ -32,12 +38,15 @@ public class Game extends SurfaceView implements Runnable {
     private int updatesOld = 0;
     private int updatesNew = -1;
     private boolean cameraLocked = false;
+    private HashMap<Integer, Bitmap> objectResources = new HashMap<>();
+
     public static int DEFAULT_TEXTURE_SIZE = 32;
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public Game(Context context) {
         super(context);
+        initResources();
         paint = new Paint();
         player = new Player(getResources());
         generator = new MapGenerator(getResources());
@@ -111,10 +120,11 @@ public class Game extends SurfaceView implements Runnable {
     }
 
     private void drawBlocks(Canvas canvas) {
-        Log.e("","Called: " + updatesOld);
         //canvas.drawColor(Color.RED);
         int width = gameMap.getSize().x;
         int height = gameMap.getSize().y;
+
+        int blockCounter = 0;
 
         Outer:
         for (int x = 0; x < width; x++) {
@@ -130,11 +140,23 @@ public class Game extends SurfaceView implements Runnable {
                 //I don't understand the number formula, why 56 and why x/y * 56 but it works as intended here
 
                 if(xCoordinate <= canvas.getWidth() && yCoordinate <= canvas.getHeight()) { //if image is on screen draw it
-                    Bitmap bmp = BitmapFactory.decodeResource(getResources(), blockToDraw.getTexture_id());
-                    canvas.drawBitmap(bmp, xCoordinate, yCoordinate, null);
+                    Bitmap bmp = objectResources.get(blockToDraw.getTexture_id()); //BitmapFactory.decodeResource(getResources(), blockToDraw.getTexture_id());
+
+                    try {
+                        canvas.drawBitmap(bmp, xCoordinate, yCoordinate, null);
+                        blockCounter++;
+                        //Log.e("","Blocks drawn " + blockCounter);
+                    } catch (Exception e) {
+                        Log.e("","Instance of " + blockToDraw);
+                        e.printStackTrace();
+                        break Outer;
+                    }
+
+
                 } else break;
             }
         }
+        updatesOld++;
     }
 
     private void drawPlayer(Canvas canvas) {
@@ -148,16 +170,23 @@ public class Game extends SurfaceView implements Runnable {
 
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                updatesOld++;
-                player.moveRight();
+                player.moveDown();
                 updated = true;
                 break;
-
         }
 
         return true;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void initResources() { //requires initialization for every instance of MyBlock
+        Grass grass = new Grass();
 
+
+        objectResources.put(R.drawable.grass_1 ,BitmapFactory.decodeResource(getResources(), R.drawable.grass_1));
+        objectResources.put(R.drawable.grass_2 ,BitmapFactory.decodeResource(getResources(), R.drawable.grass_2));
+        objectResources.put(R.drawable.grass_3 ,BitmapFactory.decodeResource(getResources(), R.drawable.grass_3));
+        objectResources.put(R.drawable.grass_4 ,BitmapFactory.decodeResource(getResources(), R.drawable.grass_4));
+    }
 
 }

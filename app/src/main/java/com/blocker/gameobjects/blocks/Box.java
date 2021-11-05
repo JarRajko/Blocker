@@ -11,7 +11,7 @@ import com.blocker.R;
 
 public class Box extends Block {
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public Box(Resources resources) {
+    public Box() {
         super(Color.valueOf(205,160,100), false, R.drawable.box_1 );
     }
 
