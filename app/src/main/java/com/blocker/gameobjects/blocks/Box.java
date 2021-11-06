@@ -13,6 +13,7 @@ public class Box extends Block {
     @RequiresApi(api = Build.VERSION_CODES.O)
     public Box() {
         super(Color.valueOf(205,160,100), false, R.drawable.box_1 );
+        super.setTexture_id(R.drawable.box_1);
     }
 
     @Override

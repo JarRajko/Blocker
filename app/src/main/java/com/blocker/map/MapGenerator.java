@@ -7,6 +7,7 @@ import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
+import com.blocker.gameobjects.blocks.Box;
 import com.blocker.gameobjects.blocks.floor.Grass;
 
 public class MapGenerator { //NOTE game could have more maps
@@ -29,7 +30,8 @@ public class MapGenerator { //NOTE game could have more maps
         for (int x = 0; x < defaultTestMap.getSize().x; x++) {
 
             for (int y = 0; y < defaultTestMap.getSize().y; y++) {
-                    defaultTestMap.addToMap(new Grass(),new Point(x,y));
+                    if (x % 2 == 0) defaultTestMap.addToMap(new Grass(),new Point(x,y));
+                    else defaultTestMap.addToMap(new Box(),new Point(x,y));
             }
         }
         return defaultTestMap;

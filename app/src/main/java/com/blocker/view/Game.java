@@ -37,7 +37,7 @@ public class Game extends SurfaceView implements Runnable {
     private boolean updated = true;
     private int updatesOld = 0;
     private int updatesNew = -1;
-    private boolean cameraLocked = false;
+    private boolean cameraLocked = true;
     private HashMap<Integer, Bitmap> objectResources = new HashMap<>();
 
     public static int DEFAULT_TEXTURE_SIZE = 32;
@@ -51,7 +51,6 @@ public class Game extends SurfaceView implements Runnable {
         player = new Player(getResources());
         generator = new MapGenerator(getResources());
         gameMap = generator.getTestMap();
-
     }
 
     @Override
@@ -69,21 +68,18 @@ public class Game extends SurfaceView implements Runnable {
     }
 
     private void draw() {
-        if (getHolder().getSurface().isValid()) {
-            if (cameraLocked) {
-                drawLocked();
-            } else {
-                drawUnlocked();
+        if (updated) {
+            if (getHolder().getSurface().isValid()) {
+                if (cameraLocked) {
+                    drawLocked();
+                } else {
+                    drawUnlocked();
+                }
             }
         }
     }
 
     private void drawLocked() {
-
-    }
-
-    private void drawUnlocked() {
-        if(updated) {
             Canvas canvas = getHolder().lockCanvas();
 
             drawBlocks(canvas);
@@ -92,7 +88,17 @@ public class Game extends SurfaceView implements Runnable {
 
             getHolder().unlockCanvasAndPost(canvas);
             if(updatesOld == 0) updated = false;
-        }
+    }
+
+    private void drawUnlocked() {
+            Canvas canvas = getHolder().lockCanvas();
+
+            drawBlocks(canvas);
+            drawPlayer(canvas);
+
+
+            getHolder().unlockCanvasAndPost(canvas);
+            if(updatesOld == 0) updated = false;
     }
 
     private void sleep() {
@@ -132,8 +138,8 @@ public class Game extends SurfaceView implements Runnable {
                 Block blockToDraw = (Block) gameMap.getObjectFromMap(new Point(x,y));
 
 
-                int offsetX = 0; //space between bitmaps in pixels
-                int offsetY = 0;
+                int offsetX = 1; //space between bitmaps in pixels
+                int offsetY = 1;
 
                 int xCoordinate = (x * (DEFAULT_TEXTURE_SIZE + offsetX)) + (x * 56);
                 int yCoordinate = (y * (DEFAULT_TEXTURE_SIZE + offsetY)) + (y * 56);
@@ -162,7 +168,12 @@ public class Game extends SurfaceView implements Runnable {
     private void drawPlayer(Canvas canvas) {
         int id = player.getPlayerTextureId();
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), id);
-        canvas.drawBitmap(bitmap,player.getPlayerPosition().x , player.getPlayerPosition().y, null);
+
+        if (cameraLocked) {
+            canvas.drawBitmap(bitmap,canvas.getWidth() /2 - 64, canvas.getHeight() / 2, null);
+        } else {
+            canvas.drawBitmap(bitmap,player.getPlayerPosition().x , player.getPlayerPosition().y, null);
+        }
     }
 
     @Override
