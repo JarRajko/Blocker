@@ -18,38 +18,33 @@ public class Player {
     private int agility;
     private Bitmap playerTexture;
     private Inventory inventory;
+    private Point playerPositionOnMap = new Point(5,5);
 
     private int testCounter = 0;
 
     public Player(Resources resources) {
         inventory = new Inventory();
         facing = Direction.NORTH;
-        position = new Point(5,5);
+        position = new Point(0,0);
         strength = 1;
         agility = 1;
         playerTexture = BitmapFactory.decodeResource(resources, R.drawable.player_down_1);
     }
 
-    public void onDraw(Canvas canvas) {
-        //System.out.println("Width is " + canvas.getWidth() + " and height is " + canvas.getHeight());
-        canvas.drawBitmap(playerTexture, position.x,position.y, null); //TODO center to middle
-        Log.e("","player drawn");
-    }
-
     public void moveUp() {
-        position.y -= 32;
+        position.y--;
     }
 
     public void moveDown() {
-        position.y += 32;
+        position.y++;
     }
 
     public void moveLeft() {
-        position.x -= 32;
+        position.x--;
     }
 
     public void moveRight() {
-        position.x += 32;
+        position.x++;
     }
 
     public int getPlayerTextureId() {

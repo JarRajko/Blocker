@@ -16,6 +16,7 @@ import androidx.annotation.RequiresApi;
 import com.blocker.R;
 import com.blocker.gameobjects.MyObject;
 import com.blocker.gameobjects.blocks.Block;
+import com.blocker.gameobjects.blocks.Box;
 import com.blocker.gameobjects.blocks.activable.Gate;
 import com.blocker.gameobjects.blocks.floor.Grass;
 import com.blocker.map.GameMap;
@@ -23,6 +24,7 @@ import com.blocker.map.MapGenerator;
 import com.blocker.player.Player;
 
 import java.util.HashMap;
+import java.util.Observer;
 
 public class Game extends SurfaceView implements Runnable {
 
@@ -34,10 +36,8 @@ public class Game extends SurfaceView implements Runnable {
     private MapGenerator generator;
     private int x = 5;
     private int y = 5;
-    private boolean updated = true;
-    private int updatesOld = 0;
-    private int updatesNew = -1;
-    private boolean cameraLocked = true;
+    private boolean updated = true; //dirty flag
+    private Camera camera;
     private HashMap<Integer, Bitmap> objectResources = new HashMap<>();
 
     public static int DEFAULT_TEXTURE_SIZE = 32;
@@ -46,27 +46,30 @@ public class Game extends SurfaceView implements Runnable {
     @RequiresApi(api = Build.VERSION_CODES.O)
     public Game(Context context) {
         super(context);
+        camera = new Camera();
         initResources();
         paint = new Paint();
         player = new Player(getResources());
         generator = new MapGenerator(getResources());
         gameMap = generator.getTestMap();
+        camera.lockCamera(true);
+        update();
     }
 
     @Override
     public void run() {
         while (isPlaying) {
-            draw();
             update();
+            draw();
             sleep();
         }
     }
 
 
     private void update() {
-
+        camera.update(player);
     }
-
+/*
     private void draw() {
         if (updated) {
             if (getHolder().getSurface().isValid()) {
@@ -99,6 +102,22 @@ public class Game extends SurfaceView implements Runnable {
 
             getHolder().unlockCanvasAndPost(canvas);
             if(updatesOld == 0) updated = false;
+    }
+*/
+
+    public void draw() {
+        if (updated) {
+            if (getHolder().getSurface().isValid()) {
+                Canvas canvas = getHolder().lockCanvas();
+
+                drawBlocks(canvas);
+                drawPlayer(canvas);
+
+
+                getHolder().unlockCanvasAndPost(canvas);
+                updated = false;
+            }
+        }
     }
 
     private void sleep() {
@@ -137,6 +156,10 @@ public class Game extends SurfaceView implements Runnable {
             for (int y = 0; y < height; y++) {
                 Block blockToDraw = (Block) gameMap.getObjectFromMap(new Point(x,y));
 
+                if(camera.isLocked()) {
+                    x += camera.getPosition().x;
+                    y += camera.getPosition().y;
+                }
 
                 int offsetX = 1; //space between bitmaps in pixels
                 int offsetY = 1;
@@ -153,7 +176,7 @@ public class Game extends SurfaceView implements Runnable {
                         blockCounter++;
                         //Log.e("","Blocks drawn " + blockCounter);
                     } catch (Exception e) {
-                        Log.e("","Instance of " + blockToDraw);
+                        Log.e("Check the line 193 ","Instance of " + blockToDraw);
                         e.printStackTrace();
                         break Outer;
                     }
@@ -162,18 +185,12 @@ public class Game extends SurfaceView implements Runnable {
                 } else break;
             }
         }
-        updatesOld++;
     }
 
     private void drawPlayer(Canvas canvas) {
         int id = player.getPlayerTextureId();
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), id);
-
-        if (cameraLocked) {
-            canvas.drawBitmap(bitmap,canvas.getWidth() /2 - 64, canvas.getHeight() / 2, null);
-        } else {
-            canvas.drawBitmap(bitmap,player.getPlayerPosition().x , player.getPlayerPosition().y, null);
-        }
+        canvas.drawBitmap(bitmap,player.getPlayerPosition().x * 32, player.getPlayerPosition().y * 32, null); //TODO FIX
     }
 
     @Override
@@ -189,11 +206,13 @@ public class Game extends SurfaceView implements Runnable {
         return true;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
+    @RequiresApi(api = Build.VERSION_CODES.O) //TODO add every instance of MyObject
     private void initResources() { //requires initialization for every instance of MyBlock
         Grass grass = new Grass();
+        Box box = new Box();
+        //RockyFloor rockyFloor = new RockyFloor();
 
-
+        objectResources.put(R.drawable.box_1, BitmapFactory.decodeResource(getResources(), R.drawable.box_1));
         objectResources.put(R.drawable.grass_1 ,BitmapFactory.decodeResource(getResources(), R.drawable.grass_1));
         objectResources.put(R.drawable.grass_2 ,BitmapFactory.decodeResource(getResources(), R.drawable.grass_2));
         objectResources.put(R.drawable.grass_3 ,BitmapFactory.decodeResource(getResources(), R.drawable.grass_3));
